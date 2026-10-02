@@ -1,0 +1,800 @@
+/* =========================================================
+   TEAM GENESIS — STYLESHEET
+   Brand colours are defined as CSS variables below, so you
+   can tweak the palette from one place.
+   ========================================================= */
+
+:root {
+  --color-primary: #C0490F;      /* burnt orange */
+  --color-primary-dark: #9c3a0c;
+  --color-light: #F4F4F4;        /* off-white / light grey */
+  --color-dark: #1A1A1A;         /* deep navy/near-black */
+  --color-accent: #2EC4C4;       /* cyan, from the logo */
+  --color-white: #ffffff;
+  --color-logo-bg: #091426;      /* exact navy background sampled from the logo artwork */
+
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --max-width: 1180px;
+  --section-padding: 6rem 1.5rem;
+  --transition: 0.3s ease;
+}
+
+/* ---------- RESET ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-dark);
+  background: var(--color-white);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ---------- BUTTONS ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition);
+  border: 2px solid transparent;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(192, 73, 15, 0.35);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-outline:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+  transform: translateY(-3px);
+}
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  /* Deep navy, subtly lighter in the middle, plus a soft drop shadow and a
+     hairline cyan edge underneath to tie it to the Genesis branding. */
+  background: linear-gradient(90deg, #07111F 0%, #0A1825 50%, #07111F 100%);
+  border-bottom: 1px solid rgba(20, 217, 229, 0.20);
+  box-shadow:
+    0 6px 28px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: background var(--transition);
+}
+
+.nav-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0.85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo-img {
+  display: block;
+  height: 58px;
+  width: auto;
+}
+
+/* =========================================================
+   HERO SUNBURST ICON — icon-only artwork (assets/genesis-icon.png,
+   background removed, wordmark cropped out) with animated glow
+   dots layered on top of each of the 9 spark nodes (positions
+   measured from the actual PNG via pixel analysis).
+   ========================================================= */
+.logo-wrap {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+
+.logo-wrap .logo-img {
+  display: block;
+  height: 320px;
+  width: auto;
+}
+
+.logo-spark {
+  position: absolute;
+  width: 6%;
+  height: 6%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-accent) 0%, rgba(46, 196, 196, 0.55) 45%, transparent 75%);
+  opacity: 0;
+  pointer-events: none;
+  animation: logoSparkPulse 2.6s ease-in-out infinite;
+  animation-delay: var(--spark-delay, 0s);
+}
+
+@keyframes logoSparkPulse {
+  0%, 100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-spark {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: #F5F7FA;
+  font-weight: 500;
+  font-size: 0.95rem;
+  position: relative;
+  padding: 0.25rem 0;
+  transition: color 0.25s ease;
+}
+
+.nav-link:hover {
+  color: #14D9E5;
+}
+
+.nav-link.active {
+  color: #FF7A18;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: #14D9E5;
+  transition: width var(--transition);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link.active::after {
+  width: 100%;
+  background: #FF7A18;
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.nav-toggle span {
+  width: 26px;
+  height: 2px;
+  background: var(--color-white);
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* Slow, looping colour drift across the brand palette (navy → brown → burnt
+     orange → navy). background-size is oversized so animating its position
+     produces a smooth wash of colour instead of a hard, visible seam. */
+  background: linear-gradient(
+    120deg,
+    var(--color-logo-bg) 0%,
+    #2b1206 30%,
+    var(--color-primary) 55%,
+    #2b1206 80%,
+    var(--color-logo-bg) 100%
+  );
+  background-size: 300% 300%;
+  animation: heroGradientShift 22s ease-in-out infinite;
+  position: relative;
+  /* Bottom padding must clear the absolutely-positioned scroll indicator
+     (bottom: 2rem + its own 42px height ≈ 74px) with room to spare, or the
+     CTA button collides with it whenever the hero has no vertical slack
+     left (short viewport / tall content — e.g. the big hero icon). */
+  padding: 6rem 1.5rem 5.5rem;
+}
+
+@keyframes heroGradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero {
+    animation: none;
+  }
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  color: var(--color-white);
+}
+
+.hero-logo {
+  margin-bottom: 0.5rem;
+}
+
+.hero-title {
+  font-size: clamp(2.75rem, 7vw, 5rem);
+  letter-spacing: -1px;
+}
+
+.hero-tagline {
+  font-size: clamp(1rem, 2.2vw, 1.35rem);
+  color: var(--color-accent);
+  font-weight: 500;
+  max-width: 40ch;
+}
+
+.hero-cta {
+  margin-top: 1.5rem;
+}
+
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26px;
+  height: 42px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+}
+
+.hero-scroll-indicator span {
+  display: block;
+  width: 4px;
+  height: 8px;
+  background: var(--color-accent);
+  border-radius: 2px;
+  margin: 6px auto 0;
+  animation: scrollDot 1.6s infinite;
+}
+
+@keyframes scrollDot {
+  0%   { transform: translateY(0); opacity: 1; }
+  70%  { transform: translateY(16px); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* =========================================================
+   SECTIONS (generic)
+   ========================================================= */
+.section {
+  padding: var(--section-padding);
+}
+
+.section-light {
+  background: var(--color-light);
+}
+
+.section-dark {
+  background: var(--color-dark);
+  color: var(--color-white);
+}
+
+.section-accent {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--color-dark);
+}
+
+.section-title-light {
+  color: var(--color-white);
+}
+
+.section-subtitle {
+  text-align: center;
+  max-width: 55ch;
+  margin: -2rem auto 3rem;
+  opacity: 0.75;
+}
+
+/* =========================================================
+   ABOUT
+   ========================================================= */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.about-text p {
+  margin-bottom: 1.2rem;
+  font-size: 1.05rem;
+}
+
+.about-image img {
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================================
+   TEAM
+   ========================================================= */
+/* Flexbox (not grid) so each wrapped row centers itself independently —
+   this keeps Miriam / John Paul / Merve together on row one and James /
+   Ankit together, centered, on row two instead of a grid's left-aligned
+   leftover row. The 280px basis is sized so exactly 3 cards fit per row
+   inside the 1180px container; it naturally drops to 2, then 1, on
+   narrower screens. */
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.team-card {
+  text-align: center;
+  flex: 0 1 280px;
+  max-width: 280px;
+}
+
+.team-photo {
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 1.2rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--color-accent);
+}
+
+.team-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-name {
+  font-size: 1.15rem;
+  margin-bottom: 0.4rem;
+  color: var(--color-white);
+}
+
+.team-role {
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+
+/* =========================================================
+   WHY PARTNER
+   ========================================================= */
+.partner-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+}
+
+.partner-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  padding: 2rem 1.6rem;
+  transition: transform var(--transition), background var(--transition);
+}
+
+.partner-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.partner-icon {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.partner-card h3 {
+  margin-bottom: 0.6rem;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.partner-card p {
+  font-size: 0.92rem;
+  opacity: 0.85;
+  text-align: justify;
+}
+
+/* =========================================================
+   SPONSORSHIP PACKAGES
+   ========================================================= */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.pricing-card {
+  background: var(--color-white);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.pricing-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+.pricing-card-featured {
+  background: var(--color-dark);
+  color: var(--color-white);
+  border: 2px solid var(--color-accent);
+  transform: scale(1.04);
+}
+
+.pricing-card-featured:hover {
+  transform: scale(1.04) translateY(-8px);
+}
+
+.pricing-badge {
+  position: absolute;
+  top: -14px;
+  right: 1.6rem;
+  background: var(--color-accent);
+  color: var(--color-dark);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 50px;
+  letter-spacing: 0.5px;
+}
+
+.pricing-tier {
+  font-size: 1.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.pricing-price {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+}
+
+.pricing-card-featured .pricing-price {
+  color: var(--color-accent);
+}
+
+.pricing-list {
+  flex-grow: 1;
+  margin-bottom: 2rem;
+}
+
+.pricing-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  font-size: 0.92rem;
+}
+
+.pricing-card-featured .pricing-list li {
+  border-bottom-color: rgba(255, 255, 255, 0.15);
+}
+
+.pricing-card .btn {
+  align-self: flex-start;
+}
+
+/* =========================================================
+   OFFICIAL SPONSOR STRIP
+   ========================================================= */
+.sponsor-strip {
+  padding: 3rem 1.5rem;
+}
+
+.sponsor-strip-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.sponsor-strip-label {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+.sponsor-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.sponsor-logo-link {
+  display: inline-block;
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+.sponsor-logo-link:hover {
+  transform: translateY(-4px);
+}
+
+.sponsor-logo {
+  height: 48px;
+  width: auto;
+}
+
+/* =========================================================
+   CONTACT
+   ========================================================= */
+.contact-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-text {
+  max-width: 55ch;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.contact-email {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--color-white);
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 4px;
+  margin-bottom: 2.2rem;
+  transition: color var(--transition);
+}
+
+.contact-email:hover {
+  color: var(--color-accent);
+}
+
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--color-white);
+  transition: background var(--transition), transform var(--transition);
+}
+
+.social-icon:hover {
+  background: var(--color-accent);
+  color: var(--color-dark);
+  transform: translateY(-4px);
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.footer {
+  background: var(--color-dark);
+  color: rgba(255, 255, 255, 0.6);
+  padding: 2rem 1.5rem;
+  font-size: 0.85rem;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.footer a:hover {
+  color: var(--color-accent);
+}
+
+/* =========================================================
+   SCROLL-REVEAL ANIMATION
+   Default state: visible (progressive enhancement in case JS
+   is disabled). script.js adds ".reveal-ready" to <body> once
+   IntersectionObserver is confirmed available, only then do
+   .reveal elements start hidden and animate in.
+   ========================================================= */
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+body.reveal-ready .reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+body.reveal-ready .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-image {
+    order: -1;
+  }
+
+  .pricing-card-featured {
+    transform: scale(1);
+  }
+
+  .pricing-card-featured:hover {
+    transform: translateY(-8px);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #07111F;
+    border-bottom: 1px solid rgba(20, 217, 229, 0.20);
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition);
+  }
+
+  .nav-links.is-open {
+    max-height: 400px;
+  }
+
+  .nav-link {
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .nav-toggle.is-open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav-toggle.is-open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle.is-open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  :root {
+    --section-padding: 4.5rem 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo-wrap.hero-logo .logo-img {
+    height: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-wrap.hero-logo .logo-img {
+    height: 160px;
+  }
+}
