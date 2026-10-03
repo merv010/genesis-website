@@ -98,7 +98,6 @@ p {
 .package-index,
 .university,
 .hero-footnote,
-.photo-label,
 .portrait-number,
 .supporters-inner > p,
 .arena-mark div {
@@ -409,17 +408,6 @@ p {
 .hero-visual:hover .hero-photo {
   transform: scale(1.025);
 }
-.photo-label {
-  position: absolute;
-  top: 21px;
-  left: 22px;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  background: var(--paper);
-  padding: 6px 10px;
-  font-size: 9px;
-  letter-spacing: 0.065em;
 }
 .frame-corner {
   position: absolute;
@@ -947,21 +935,6 @@ details[open] .expand-icon::after {
 .package-platinum dl > div {
   border-color: #4b5043;
 }
-.package-terms {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  margin-top: 28px;
-}
-.package-terms p {
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.85;
-}
-.package-terms strong {
-  color: var(--ink);
-  font-weight: 600;
-}
 .custom-partnership {
   margin-top: 42px;
   display: flex;
@@ -1323,12 +1296,6 @@ details[open] .expand-icon::after {
   .photo-frame {
     aspect-ratio: 4/5.5;
   }
-  .photo-label {
-    font-size: 7px;
-    left: 10px;
-    top: 14px;
-    padding: 5px 7px;
-  }
   .achievement-tag {
     gap: 12px;
     margin-right: 0;
@@ -1472,9 +1439,6 @@ details[open] .expand-icon::after {
   .package dl > div {
     min-height: 86px;
   }
-  .package-terms {
-    gap: 20px;
-  }
   .custom-partnership {
     gap: 22px;
     padding: 24px;
@@ -1566,9 +1530,6 @@ details[open] .expand-icon::after {
   }
   .hero-photo {
     object-position: center 40%;
-  }
-  .photo-label {
-    font-size: 8px;
   }
   .achievement-tag {
     margin-left: -14px;
@@ -1743,14 +1704,6 @@ details[open] .expand-icon::after {
   .package .button {
     font-size: 11px;
     padding-inline: 17px;
-  }
-  .package-terms {
-    grid-template-columns: 1fr;
-    gap: 15px;
-    margin-top: 25px;
-  }
-  .package-terms p {
-    font-size: 12px;
   }
   .custom-partnership {
     flex-direction: column;
